@@ -1,42 +1,48 @@
-type PaginationProps = {
-  page: number;
-  pageSize: number;
-  total: number;
-  onPageChange: (page: number) => void;
-};
+interface PaginationProps {
+  currentPage: number
+  totalPages: number
+  onPageChange: (page: number) => void
+}
 
-export function Pagination({
-  page,
-  pageSize,
-  total,
-  onPageChange,
-}: PaginationProps) {
-  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+export function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1)
+    }
+  }
+
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1)
+    }
+  }
 
   return (
     <nav
+      className="flex items-center justify-between sm:justify-center gap-4"
       aria-label="Pagination"
-      style={{ display: "flex", gap: "1rem", alignItems: "center" }}
     >
       <button
-        type="button"
-        onClick={() => onPageChange(page - 1)}
-        disabled={page <= 1}
+        onClick={handlePrevious}
+        disabled={currentPage === 1}
+        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white transition-colors duration-200"
+        aria-label="Previous page"
       >
         Previous
       </button>
 
-      <span aria-live="polite">
-        Page {page} of {totalPages}
+      <span className="text-sm text-gray-700" aria-live="polite">
+        Page {currentPage} of {totalPages}
       </span>
 
       <button
-        type="button"
-        onClick={() => onPageChange(page + 1)}
-        disabled={page >= totalPages}
+        onClick={handleNext}
+        disabled={currentPage === totalPages}
+        className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white transition-colors duration-200"
+        aria-label="Next page"
       >
         Next
       </button>
     </nav>
-  );
+  )
 }
