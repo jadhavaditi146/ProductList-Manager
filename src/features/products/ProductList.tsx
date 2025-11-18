@@ -9,13 +9,13 @@ export function ProductList() {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  
+
   // Filters and sorting
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const [sortBy, setSortBy] = useState('name')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
-  
+
   // Pagination
   const [currentPage, setCurrentPage] = useState(1)
   const [totalItems, setTotalItems] = useState(0)
@@ -31,43 +31,34 @@ export function ProductList() {
     try {
       setLoading(true)
       setError(null)
-      
+
       const params = new URLSearchParams({
         page: currentPage.toString(),
         limit: limit.toString(),
       })
-      
-      if (searchQuery) {
-        params.append('query', searchQuery)
-      }
-      
-      if (selectedCategory) {
-        params.append('category', selectedCategory)
-      }
+
+      if (searchQuery) params.append('query', searchQuery)
+      if (selectedCategory) params.append('category', selectedCategory)
 
       const response = await fetch(`/products?${params.toString()}`)
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch products')
-      }
+
+      if (!response.ok) throw new Error('Failed to fetch products')
 
       const data: ListResponse<Product> = await response.json()
-      
-      // Apply client-side sorting since API doesn't support it
+
+      // Client-side sorting
       let sortedProducts = [...data.items]
       sortedProducts.sort((a, b) => {
         if (sortBy === 'name') {
-          return sortOrder === 'asc' 
+          return sortOrder === 'asc'
             ? a.name.localeCompare(b.name)
             : b.name.localeCompare(a.name)
         } else if (sortBy === 'price') {
-          return sortOrder === 'asc'
-            ? a.price - b.price
-            : b.price - a.price
+          return sortOrder === 'asc' ? a.price - b.price : b.price - a.price
         }
         return 0
       })
-      
+
       setProducts(sortedProducts)
       setTotalItems(data.total)
     } catch (err) {
@@ -79,12 +70,12 @@ export function ProductList() {
 
   const handleSearchChange = (query: string) => {
     setSearchQuery(query)
-    setCurrentPage(1) // Reset to first page on search
+    setCurrentPage(1)
   }
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category)
-    setCurrentPage(1) // Reset to first page on filter
+    setCurrentPage(1)
   }
 
   const handleSortChange = (sort: string) => {
@@ -104,22 +95,24 @@ export function ProductList() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-red-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
+
         {/* Header */}
         <header className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2" id="products-heading">
             Products
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-700">
             Browse and manage your product listings
           </p>
         </header>
 
         {/* Main Card Container */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+        <div className="bg-white rounded-2xl shadow-lg border border-red-100">
+
           {/* Toolbar Section */}
-          <div className="border-b border-gray-200 bg-gray-50 p-6">
+          <div className="border-b border-red-100 bg-red-500 p-6 rounded-t-2xl">
             <ProductsToolbar
               searchQuery={searchQuery}
               onSearchChange={handleSearchChange}
@@ -135,13 +128,13 @@ export function ProductList() {
           {/* Content Area */}
           <div className="p-6 min-h-96">
             {loading && <LoadingState />}
-            
+
             {!loading && error && (
               <ErrorState error={error} onRetry={handleRetry} />
             )}
-            
+
             {!loading && !error && products.length === 0 && <EmptyState />}
-            
+
             {!loading && !error && products.length > 0 && (
               <div data-testid="products-list">
                 <ProductsTable products={products} />
@@ -151,11 +144,12 @@ export function ProductList() {
 
           {/* Pagination Footer */}
           {!loading && !error && products.length > 0 && (
-            <div className="border-t border-gray-200 px-6 py-4">
+            <div className="border-t border-red-100 px-6 py-4 bg-red-500 rounded-b-2xl">
               <div className="flex items-center justify-between">
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-white font-medium">
                   Showing {products.length} of {totalItems} products
                 </p>
+
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPages}

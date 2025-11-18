@@ -51,7 +51,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
               <td className="px-6 py-4 whitespace-nowrap">
                 <Link
                   to={`/products/${product.id}`}
-                  className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
+                  className="text-black hover:text-blue-800 font-medium transition-colors"
                   data-testid={`product-link-${product.id}`}
                 >
                   {product.name}

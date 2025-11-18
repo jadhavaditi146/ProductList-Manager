@@ -5,6 +5,7 @@ export type Product = {
   category: string
   inStock: boolean
   description?: string
+  imageUrl?: string | null;
 }
 export type ListResponse<T> = {
   items: T[]

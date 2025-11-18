@@ -1,7 +1,7 @@
 export function LoadingState() {
   return (
     <div className="flex flex-col items-center justify-center py-12" role="status">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
       <p className="mt-4 text-gray-600">Loading products...</p>
     </div>
   )
@@ -11,7 +11,7 @@ export function EmptyState() {
   return (
     <div className="text-center py-12">
       <svg
-        className="mx-auto h-12 w-12 text-gray-400"
+        className="mx-auto h-12 w-12 text-gray-200"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -57,7 +57,7 @@ export function ErrorState({ error, onRetry }: ErrorStateProps) {
       {onRetry && (
         <button
           onClick={onRetry}
-          className="mt-4 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+          className="mt-4 px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
         >
           Retry
         </button>
