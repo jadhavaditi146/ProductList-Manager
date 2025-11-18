@@ -1,14 +1,5 @@
-// src/components/LogoModern.jsx
-import React from "react";
 
-/**
- * Modern compact logo symbol for Listings Manager
- *
- * Props:
- *  - size: number (px) for the icon size (default 40)
- *  - showText: boolean - whether to show "Listings Manager" text beside icon (default true)
- *  - className: additional className for container
- */
+import React from "react";
 export default function LogoModern({ size = 40, showText = true, className = "" }) {
   const s = Math.max(24, size);
   
@@ -17,16 +8,15 @@ export default function LogoModern({ size = 40, showText = true, className = "" 
     fontWeight: 700,
     fontSize: Math.round(s * 0.55),
     letterSpacing: "-0.03em",
-    color: "#dc2626", // red-600
+    color: "#dc2626", 
     lineHeight: 1.2,
   };
 
   const subTextStyle = {
     fontWeight: 500,
     fontSize: Math.round(s * 0.32),
-    color: "#ef4444", // red-500
+    color: "#ef4444", 
     letterSpacing: "0.05em",
-    textTransform: "uppercase",
   };
 
   return (
@@ -46,7 +36,7 @@ export default function LogoModern({ size = 40, showText = true, className = "" 
           </linearGradient>
         </defs>
 
-        {/* Rounded square background */}
+      
         <rect
           x="2"
           y="2"
@@ -56,17 +46,15 @@ export default function LogoModern({ size = 40, showText = true, className = "" 
           fill="url(#redGrad)"
         />
 
-        {/* White list icon */}
+     
         <g transform="translate(10, 10)">
-          {/* List item 1 */}
+ 
           <circle cx="2" cy="3" r="1.5" fill="#fff" />
           <rect x="6" y="2" width="12" height="2" rx="1" fill="#fff" opacity="0.9" />
-          
-          {/* List item 2 */}
+ 
           <circle cx="2" cy="10" r="1.5" fill="#fff" />
           <rect x="6" y="9" width="9" height="2" rx="1" fill="#fff" opacity="0.9" />
           
-          {/* List item 3 */}
           <circle cx="2" cy="17" r="1.5" fill="#fff" />
           <rect x="6" y="16" width="10" height="2" rx="1" fill="#fff" opacity="0.9" />
         </g>

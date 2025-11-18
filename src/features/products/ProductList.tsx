@@ -98,7 +98,6 @@ export function ProductList() {
     <div className="min-h-screen bg-red-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
 
-        {/* Header */}
         <header className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2" id="products-heading">
             Products
@@ -108,10 +107,8 @@ export function ProductList() {
           </p>
         </header>
 
-        {/* Main Card Container */}
         <div className="bg-white rounded-2xl shadow-lg border border-red-100">
 
-          {/* Toolbar Section */}
           <div className="border-b border-red-100 bg-red-500 p-6 rounded-t-2xl">
             <ProductsToolbar
               searchQuery={searchQuery}
@@ -125,7 +122,6 @@ export function ProductList() {
             />
           </div>
 
-          {/* Content Area */}
           <div className="p-6 min-h-96">
             {loading && <LoadingState />}
 
@@ -142,7 +138,6 @@ export function ProductList() {
             )}
           </div>
 
-          {/* Pagination Footer */}
           {!loading && !error && products.length > 0 && (
             <div className="border-t border-red-100 px-6 py-4 bg-red-500 rounded-b-2xl">
               <div className="flex items-center justify-between">

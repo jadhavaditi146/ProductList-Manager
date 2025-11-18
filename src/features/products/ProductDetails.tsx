@@ -47,7 +47,6 @@ export function ProductDetails() {
     <div className="min-h-screen bg-pink-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
 
-        {/* Back Link */}
         <Link
           to="/"
           className="inline-flex items-center text-lg font-bold text-gray-800 hover:text-gray-500 mb-6 transition-colors"
@@ -68,7 +67,6 @@ export function ProductDetails() {
           Back to Products
         </Link>
 
-        {/* Card */}
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
 
           {loading && <LoadingState />}
@@ -77,7 +75,6 @@ export function ProductDetails() {
           {!loading && !error && product && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-              {/* Product Image Section */}
               <div className="bg-gray-50 flex items-center justify-center rounded-lg p-4 border border-gray-200">
                 {product.imageUrl ? (
                   <img 
@@ -90,7 +87,6 @@ export function ProductDetails() {
                 )}
               </div>
 
-              {/* Product info Section */}
               <div>
                 <h1 className="text-3xl font-bold text-gray-900 mb-3">
                   {product.name}

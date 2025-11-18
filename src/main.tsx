@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
-import './index.css'  // ← CHANGE THIS LINE (was './reset.css')
+import './index.css'  
 
 async function boot() {
 if (import.meta.env.DEV) {
